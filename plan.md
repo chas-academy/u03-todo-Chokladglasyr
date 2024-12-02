@@ -27,4 +27,5 @@ Vecka 1-2:
 + Hel bilder i bakgrunden.
 + timestamp
 + Skapa tester
++ ENV för lösenord
 
