@@ -11,8 +11,8 @@ try {
         PDO::ATTR_EMULATE_PREPARES => false
     ]
     );
-    echo "Connection success";
-    
+    // echo "Connection success";
+
 } catch (PDOException $e) {
     //Logga felmeddelandet:
     error_log("Database connection failed: " . $e->getMessage());

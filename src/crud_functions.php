@@ -5,7 +5,7 @@ function getList($conn) {
     return $stmt->fetchAll();
 }
 function getTasks($conn) {
-    $stmt = $conn->query('SELECT id, title, is_completed FROM exam_tasks');
+    $stmt = $conn->query('SELECT id, title, is_completed, list_id FROM exam_tasks');
     return $stmt->fetchAll();
 }
 

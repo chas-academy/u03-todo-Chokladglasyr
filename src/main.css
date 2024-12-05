@@ -1,1 +1,8 @@
-/*# sourceMappingURL=main.css.map */
+.list div {
+  gap: 2rem;
+  border-bottom: solid 1px black;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}/*# sourceMappingURL=main.css.map */

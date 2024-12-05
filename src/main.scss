@@ -1,3 +1,16 @@
-.list {
-
+.list div {
+   gap: 2rem;
+   border-bottom: solid 1px black;
+   text-align: center;
+   width: 50%;
+   margin: 0 auto;
+   padding-bottom: 1rem;
 }
+
+// .show_btn {
+//     border: 1px solid black;
+//     border-radius: 5px;
+//     text-decoration: none;
+//     padding: 0.5rem;
+//     color: black;
+// }

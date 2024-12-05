@@ -26,11 +26,14 @@ require 'crud_functions.php';
 
             <p><?php echo htmlspecialchars($list['title']);?></p>
             <p><?php echo htmlspecialchars($list['description']);?></p>
+            <form action = "list.php" method = "GET">
+                <button name="show_btn" type="submit">show list</button>
+            </form>
 
         </div>
   
         <?php endforeach; ?></div>
-
+        
    </section> 
 </body>
 </html>
