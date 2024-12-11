@@ -19,10 +19,26 @@ function addList($listData) {
 
     $stmt->execute();
 
-    // header("Location: http://localhost/index.php");
+    // header("Location: http://localhost");
+
 }
 if (isset($_POST['crud']) && $_POST['crud'] == "add") {
     addList(['title' => $_POST['title'], 'description' => $_POST['description']]);
+
+ 
 }
 
+function getTaskList($listid) {
+    global $conn;
+    $stmt = $conn->query('SELECT id, title, is_completed, list_id FROM exam_tasks WHERE list_id = '. $listid);
+
+    return $stmt->fetchAll();
+}
+
+function getListTitle($listid) {
+    global $conn;
+    $stmt = $conn->query('SELECT id, title FROM exam_lists WHERE id =' .$listid);
+
+    return $stmt->fetch();
+}
 ?>

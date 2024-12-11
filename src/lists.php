@@ -11,7 +11,7 @@ require 'crud_functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>Xmas List</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -35,11 +35,20 @@ require 'crud_functions.php';
             <p><?=$list['description'];?></p>
             <?php $listID = ($list['id']); ?>
         
-          <a href="list.php?listid=<?= $listID; ?>"> show list</a>
+          <a href="showList.php?listid=<?= $listID; ?>">show list</a>
+          <a href="delete.php?crud=deleteList">delete</a>
+        
 
         </div>
   
         <?php endforeach; ?></div>
+        
+            <?php 
+          if(isset($_GET['crud']) && $_GET['crud'] == 'deleteList') {
+            
+            require 'delete.php';
+          }
+          ?>
         
    </section> 
    <div class="createCustom">
