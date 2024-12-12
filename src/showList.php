@@ -19,12 +19,13 @@ require 'crud_functions.php';
     <?php
     if(isset($_GET['listid'])) { 
       
-        $tasks = getTaskList($_GET['listid']);
+        $tasks = getTasksPerList($_GET['listid']);
         
-        $listTitle = getListTitle($_GET['listid']); ?>
+        $listTitle = getListOne($_GET['listid']); ?>
 
         <h2><?=$listTitle['title'];?></h2>
-        <a href="edit.php?listid=<?= $listTitle['id']; ?>"></a>
+        
+        <a href="edit.php?listid=<?= $listTitle['id']; ?>">Edit</a>
 
         <?php
         if (!$tasks) { ?>

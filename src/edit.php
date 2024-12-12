@@ -9,14 +9,13 @@ require 'crud_functions.php';
     <?php
     if(isset($_GET['listid'])) { 
       
-        $tasks = getTaskList($_GET['listid']);
-        var_dump($taks);
+        $list = getListOne($_GET['listid']);
 
     } ?>
 
     <form class="editList" action="index.php" method="POST">
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="description" placeholder="Description:">
+        <input type="text" name="title" placeholder="Title" value="<?= $list['title']?>">
+        <input type="text" name="description" placeholder="Description:" value="<?=$list['description'] ?>">
         <button type="submit" name="crud" value="editList">Edit</button>
     </form>
 

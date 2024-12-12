@@ -21,7 +21,7 @@ require 'crud_functions.php';
         
         <?php 
        
-        $lists = getList();
+        $lists = getListAll();
         if (!$lists) { ?>
 
         <p class="message">You have no lists at the moment!</p>
