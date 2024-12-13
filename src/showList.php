@@ -14,8 +14,6 @@ require 'crud_functions.php';
 </head>
 <body>
     <section class="list">
-  
-
     <?php
     if(isset($_GET['listid'])) { 
       
@@ -25,8 +23,16 @@ require 'crud_functions.php';
 
         <h2><?=$listTitle['title'];?></h2>
         
-        <a href="edit.php?listid=<?= $listTitle['id']; ?>">Edit</a>
+        <a href="edit.php?id=<?= $listTitle['id']; ?>&crud=editList">Edit</a>
+        <!-- <div class="createCustom">
 
+        <form action="edit.php" method="get">
+        <input type="hidden" name="id" value="<?=$listTitle['id']?>">
+        <button type="submit" name="crud" value="editList">Edit list</button> 
+        <br><br>
+        </form>
+
+        </div> -->
         <?php
         if (!$tasks) { ?>
 
@@ -37,17 +43,17 @@ require 'crud_functions.php';
         <div>
             <p><?php echo $task['title']; ?></p>
             <input type="checkbox" name="is_completed" <?php if($task['is_completed']) { echo 'checked';} ?>>
-        
-  
+            <!-- <a href="showList.php?id=<?=$task['id']?>&crud=deleteTask">delete</a> -->
+             <form action="" method="post">
+             <input type="hidden" name="id" value="<?=$task['id']?>">
+             <button type="submit" name="crud" value="deleteTask">X</button>
+        </form>
         </div>
         <?php  endforeach; 
         } 
-    } ?>            
-        
-
-
-       
-        </section>
- 
+    } 
+?>
+                
+    </section>
 </body>
 </html>

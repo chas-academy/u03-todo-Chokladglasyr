@@ -36,19 +36,19 @@ require 'crud_functions.php';
             <?php $listID = ($list['id']); ?>
         
           <a href="showList.php?listid=<?= $listID; ?>">show list</a>
-          <a href="delete.php?crud=deleteList">delete</a>
-        
+          <a href="lists.php?id=<?=$listID?>&crud=deleteList">delete</a>
+
 
         </div>
   
         <?php endforeach; ?></div>
-        
-            <?php 
+        <?php 
           if(isset($_GET['crud']) && $_GET['crud'] == 'deleteList') {
             
             require 'delete.php';
           }
           ?>
+
         
    </section> 
    <div class="createCustom">
