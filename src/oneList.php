@@ -20,9 +20,10 @@ require 'crud_functions.php';
     <?php
     if(isset($_GET['listID'])) { 
       
-        $tasks = getTasksPerList($_GET['listID']);
+        $checkedTasks = getTasksAndchecked($_GET['listID']);
+        $uncheckedTasks = getTasksAndunchecked($_GET['listID']);
         
-        $listTitle = getListOne($_GET['listID']); ?>
+        $listTitle = getListOne($_GET['listID']);?>
 
         <h2><?=$listTitle['title'];?></h2>
         <h3><?=$listTitle['description'];?></h3>
@@ -34,27 +35,53 @@ require 'crud_functions.php';
               require 'edit.php';
           }
           ?>
-
-
         <?php
-        if (!$tasks) { ?>
+        if (!$checkedTasks && !$uncheckedTasks) { ?>
 
             <p class="message">You have no tasks in this list!</p>
 
-        <?php } else {
-        foreach ($tasks as $task): ?>
-        <div>
-            <p><?php echo $task['title']; ?></p>
-            <input value="checked" type="checkbox" name="is_completed" <?php if($task['is_completed']) { echo 'checked';} ?>>
-            <form action="" method="post">
-            <input type="hidden" name="id" value="<?=$task['taskID']?>">
-            <button type="submit" name="crud" value="deleteTask">X</button>
-        </form>
-        </div>
-        <?php 
-     
+        <?php } else { ?>
 
-        endforeach; 
+        <h3>To do</h3>
+        <?php
+        if (!$uncheckedTasks) {?>
+            <p>You have completed all your tasks!</p>
+        <?php
+        }
+        foreach ($uncheckedTasks as $uncheckedTask): ?>
+            <div>
+                <p><?php echo $uncheckedTask['title']; ?></p>
+                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($uncheckedTask['is_completed']) { echo 'checked';} ?>> -->
+                <form action="" method="post">
+                <input type="hidden" name="id" value="<?=$uncheckedTask['taskID']?>">
+                <?php var_dump($uncheckedTask['taskID']);?>
+                <button type="submit" name="is_completed" value=0>Done</button>
+                <button type="submit" name="crud" value="deleteTask">X</button>
+            </form>
+            </div>
+            <?php 
+
+    
+            endforeach;?>
+            <h3>Completed</h3>
+            <?php
+            if (!$checkedTasks) {?>
+                <p>You have no completed tasks!</p>
+            <?php
+            }
+            foreach ($checkedTasks as $checkedTask): ?>
+            <div>
+                <p><?php echo $checkedTask['title']; ?></p>
+                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($checkedTask['is_completed']) { echo 'checked';} ?>> -->
+                <form action="" method="post">
+                <input type="hidden" name="id" value="<?=$checkedTask['taskID']?>">
+                <?php var_dump($checkedTask['taskID']);?>
+                <button type="submit" name="is_completed" value=1>Regret</button>
+                <button type="submit" name="crud" value="deleteTask">X</button>
+            </form>
+            </div>
+            <?php 
+            endforeach; 
         } 
     } ?>   
    

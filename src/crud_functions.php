@@ -72,6 +72,18 @@ function getTasksPerList($listID) {
 
     return $stmt->fetchAll();
 }
+function getTasksAndchecked($listID){
+    global $conn;
+    $stmt = $conn->query('SELECT taskID, title, listID FROM tasks WHERE is_completed = 1 AND listID =' .$listID);
+    
+    return $stmt->fetchAll();
+}
+function getTasksAndunchecked($listID) {
+    global $conn;
+    $stmt = $conn->query('SELECT taskID, title, listID FROM tasks WHERE is_completed = 0 AND listID =' .$listID);
+    
+    return $stmt->fetchAll();
+}
 //hämtar en task från en lista
 function getTaskOne($taskID) {
 
@@ -105,5 +117,25 @@ if  (isset($_POST['crud'])) {
         addTask(['listID' => $_POST['listID'], 'title' => $_POST['title']]);
 
     }
+}
+//done eller icke done task
+//sätter en icke done till done
+function completedTask($taskID) {
+    global $conn;
+    $stmt = $conn->exec('UPDATE tasks SET is_completed = 1 WHERE taskID =' .$taskID);
+
+}
+//sätter en done till icke done
+function incompletedTask($taskID) {
+    global $conn;
+    $stmt = $conn->exec('UPDATE tasks SET is_completed = 0 WHERE taskID =' .$taskID);
+}
+if (isset($_POST['is_completed'])) {
+    if($_POST['is_completed'] == 0) {
+        completedTask($_POST['id']);       
+    } else if ($_POST['is_completed'] == 1) {
+        incompletedTask($_POST['id']);
+    }
+
 }
 ?>
