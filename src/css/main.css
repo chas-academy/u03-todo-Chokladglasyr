@@ -23,6 +23,16 @@
   font-style: normal;
 }
 
+.appheaderReg {
+  text-align: center;
+  background-image: url(./assets/headingbackgroundlogin.png);
+  width: 306px;
+  padding-top: 0.75rem;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .createCustom {
   margin-top: 2rem;
   display: flex;
