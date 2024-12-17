@@ -6,29 +6,26 @@ services:
         context: .
         dockerfile: Dockerfile
       volumes:
-        - .:/var/www/html
+        - ./src:/var/www/html
       ports:
         - 80:80
   
   mariadb:
-    image: mariadb:latest
-    container_name: mariadb_u03
-    restart: always
-    environment:
-      MYSQL_USER: ida
-      MYSQL_PASSWORD: ida
-      MYSQL_DATABASE: mariadb
-      MARIADB_ROOT_PASSWORD: todo.ida
-      MARIADB_DATABASE: u03-ida
-    ports:
-      - 3306:3306
-    volumes:
-      - .src/seed:/docker-entrypoint.initdb.d:ro
+      image: mariadb:latest
+      container_name: mariadb_u03
+      restart: always
+      environment:
+        MARIADB_ROOT_PASSWORD: todo.ida
+        MARIADB_DATABASE: u03-ida
+      ports:
+        - 3306:3306
+      volumes:
+        - ./src/seed:/docker-entrypoint-initdb.d:ro
 
   adminer:
-    image: adminer:latest
-    container_name: adminer_u03
-    restart: always
-    ports:
-      - 8080:8080
+      image: adminer:latest
+      container_name: adminer_u03
+      restart: always
+      ports:
+        - 8080:8080
     

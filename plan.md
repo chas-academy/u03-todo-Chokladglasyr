@@ -1,12 +1,12 @@
 ## Rekommenderad Plan
 
 Vecka 48:  
-- [ ] Kom på en idé för en intressant todo-lista som kan bygga på något från t.ex. film eller intresse, eller skapa en mer "standard" lista.
-- [ ] Skapa ett ER-diagram för att planera databasstrukturen.
-- [ ] Designa användargränssnittet i en Figma-skiss.
+- [x] Kom på en idé för en intressant todo-lista som kan bygga på något från t.ex. film eller intresse, eller skapa en mer "standard" lista.
+- [x] Skapa ett ER-diagram för att planera databasstrukturen.
+- [x] Designa användargränssnittet i en Figma-skiss.
 Vecka 49:  
-- [ ] Få igång den utdelade Docker-containern för PHP och MariaDB.
-- [ ] Implementera designen i HTML (t.ex. direkt i en PHP fil som ju också kan visa HTML) och CSS för en första version av applikationen.
+- [x] Få igång den utdelade Docker-containern för PHP och MariaDB.
+- [x] Implementera designen i HTML (t.ex. direkt i en PHP fil som ju också kan visa HTML) och CSS för en första version av applikationen.
 Vecka 50-51:  
 - [ ] Implementera PHP- och SQL-funktioner för att utföra alla CRUD-operationer.
 Vecka 52:  
@@ -28,4 +28,6 @@ Vecka 1-2:
 + timestamp
 + Skapa tester
 + ENV för lösenord
-
++ säga till ifall username redan finns
++ inte alla ska se alla listor
++ lägg till en admin och admin features
