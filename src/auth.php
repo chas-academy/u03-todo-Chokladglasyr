@@ -3,13 +3,13 @@ session_start();
 require_once "db.php";
 dbConnect();
 
-function login($email, $password) {
+function login($username, $password) {
     $_SESSION['user'] = null;
 
     global $conn;
 
-    $query = $conn->prepare("SELECT name, email, password FROM users WHERE email = :email LIMIT 1");
-    $query->bindParam(':email', $email);
+    $query = $conn->prepare("SELECT username, password FROM users WHERE username = :username LIMIT 1");
+    $query->bindParam(':username', $username);
 
     $query->execute();
     
@@ -17,7 +17,7 @@ function login($email, $password) {
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user'] = ['name' => $user['name'], 'email' => $user['email']];
+            $_SESSION['user'] = ['username' => $user['username']];
 
             header("Location: http://localhost/index.php"); 
 
@@ -29,16 +29,15 @@ function login($email, $password) {
 
 }
 
-function register($name, $email, $password) {
+function register($username, $password) {
 
    global $conn;
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = $conn->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+    $query = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
 
-    $query->bindParam(':name', $name);
-    $query->bindParam(':email', $email);
+    $query->bindParam(':username', $username);
     $query->bindParam(':password', $hashedPassword);
 
     $query->execute();
@@ -48,11 +47,11 @@ function register($name, $email, $password) {
 
 if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
 
-    login($_POST['email'], $_POST['password']);
+    login($_POST['username'], $_POST['password']);
 
 } else if (isset($_POST['auth']) && $_POST['auth'] == 'register') {
 
-    register($_POST['name'], $_POST['email'], $_POST['password']);
+    register($_POST['username'], $_POST['password']);
 
 } else {
     header("Location: http://localhost/index.php");

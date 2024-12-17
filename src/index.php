@@ -14,7 +14,7 @@ session_start();
 </head>
 <?php
     if (isset($_SESSION['user'])) {
-        echo "<h1>Welcome back {$_SESSION['user']['name']}</h1>";
+        echo "<h1>Welcome back {$_SESSION['user']['username']}</h1>";
         require 'lists.php';
     } else {
     ?>
@@ -24,7 +24,7 @@ session_start();
     <h1 class="appheader">Xmas List</h1>
     <br>
     <form action="auth.php" method="post">
-        <input type="email" name="email" placeholder="email@example.com">
+        <input type="text" name="username" placeholder="username">
         <br>
         <input type="password" name="password" placeholder="password">
         <br>
