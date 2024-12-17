@@ -15,6 +15,7 @@ session_start();
 <?php
     if (isset($_SESSION['user'])) {
         echo "<h1>Welcome back {$_SESSION['user']['username']}</h1>";
+        
         require 'lists.php';
     } else {
     ?>

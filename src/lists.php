@@ -23,8 +23,9 @@ require 'crud_functions.php';
     <div class = "list">    
         
         <?php 
-       
-        $lists = getListAll();
+        $userID = ($_SESSION['user']['userID']);
+        
+        $lists = getListAll($userID);
         if (!$lists) { ?>
 
         <p class="message">You have no lists at the moment!</p>
@@ -36,10 +37,10 @@ require 'crud_functions.php';
 
             <p><?=$list['title'];?></p>
             <p><?=$list['description'];?></p>
-            <?php $listID = ($list['id']); ?>
+            <?php $listID = ($list['listID']); ?>
         
-          <a href="oneList.php?listid=<?= $listID; ?>">show list</a>
-          <a href="lists.php?id=<?=$listID?>&crud=deleteList">delete</a>
+          <a href="oneList.php?listID=<?= $listID; ?>">show list</a>
+          <a href="index.php?listID=<?=$listID?>&crud=deleteList">delete</a>
 
 
         </div>
@@ -56,10 +57,11 @@ require 'crud_functions.php';
    </section> 
    <div class="createCustom">
 
-          <form action="lists.php" method="get">
+          <!-- <form action="index.php" method="get">
             <button type="submit" name="crud" value="addList">New list</button> 
             <br><br>
-          </form>
+          </form> -->
+          <a href="http://localhost/index.php?userID=<?=($_SESSION['user']['userID'])?>&crud=addList">New</a>
 
           <?php 
           if(isset($_GET['crud']) && $_GET['crud'] == 'addList') {

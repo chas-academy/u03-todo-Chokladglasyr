@@ -18,15 +18,23 @@ require 'crud_functions.php';
 <body>
     <section class="list">
     <?php
-    if(isset($_GET['listid'])) { 
+    if(isset($_GET['listID'])) { 
       
-        $tasks = getTasksPerList($_GET['listid']);
+        $tasks = getTasksPerList($_GET['listID']);
         
-        $listTitle = getListOne($_GET['listid']); ?>
+        $listTitle = getListOne($_GET['listID']); ?>
 
         <h2><?=$listTitle['title'];?></h2>
+        <h3><?=$listTitle['description'];?></h3>
         
-        <a href="edit.php?id=<?= $listTitle['id']; ?>&crud=editList">Edit</a>
+        <a href="oneList.php?listID=<?= $listTitle['listID'];?>&crud=editList">Edit</a>
+        <?php 
+          if(isset($_GET['crud']) && $_GET['crud'] == 'editList') {
+            
+              require 'edit.php';
+          }
+          ?>
+
 
         <?php
         if (!$tasks) { ?>
@@ -37,21 +45,24 @@ require 'crud_functions.php';
         foreach ($tasks as $task): ?>
         <div>
             <p><?php echo $task['title']; ?></p>
-            <input type="checkbox" name="is_completed" <?php if($task['is_completed']) { echo 'checked';} ?>>
+            <input value="checked" type="checkbox" name="is_completed" <?php if($task['is_completed']) { echo 'checked';} ?>>
             <form action="" method="post">
-            <input type="hidden" name="id" value="<?=$task['id']?>">
+            <input type="hidden" name="id" value="<?=$task['taskID']?>">
             <button type="submit" name="crud" value="deleteTask">X</button>
         </form>
         </div>
-        <?php  endforeach; 
+        <?php 
+     
+
+        endforeach; 
         } 
     } ?>   
    
     </section>    
     <div class="addTask">
         <form action="" method="POST">
-            <input type="hidden" name="list_id" value="<?= $listTitle['id']; ?>">
-            <?php var_dump($listTitle['id']);?>
+            <input type="hidden" name="listID" value="<?= $listTitle['listID']; ?>">
+            <?php var_dump($listTitle['listID']);?>
             <input type="text" name="title" placeholder="Task:">
             <button type="submit" name="crud" value="addTask">Add <span>&#43;</span></button>
         </form>
