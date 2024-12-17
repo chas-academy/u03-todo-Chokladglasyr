@@ -1,0 +1,21 @@
+@mixin font-rubrik {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin font-text {
+    font-family: "Playfair", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin input {
+    background-color: #D9D9D9;
+    border-style: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 218px;
+    font-size: 1.25rem;
+}

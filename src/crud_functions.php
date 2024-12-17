@@ -47,7 +47,7 @@ function deleteList($listId){
 }
 
 //if sats för om det ska vara lägga till/ ändra eller deleta en lista
-if (isset($_POST['crud']) && $_POST['crud'] == "add") {
+if (isset($_POST['crud']) && $_POST['crud'] == "addList") {
 
     addList(['title' => $_POST['title'], 'description' => $_POST['description']]);
 
@@ -59,7 +59,7 @@ if (isset($_POST['crud']) && $_POST['crud'] == "add") {
 
     deleteList($_POST['id']);
 
-} else if (isset($_POST['rud']) && $_POST['crud'] == "back"){
+} else if (isset($_POST['crud']) && $_POST['crud'] == "back"){
 
     header("Location: http://localhost/lists.php");
 }
@@ -79,13 +79,30 @@ function getTaskOne($taskId) {
  
     return $stmt->fetch();
 }
+//lägga till task
+function addTask($taskData) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO exam_tasks(list_id, title) VALUES (:list_id, :title)");
+    $stmt->bindParam(':list_id', $taskData['list_id']);
+    $stmt->bindParam(':title', $taskData['title']);
+
+    $stmt->execute();
+
+}
 //ta bort vald task
 function deleteTask($taskId) {
     global $conn;
     $stmt = $conn->exec("DELETE FROM exam_tasks WHERE id =" .$taskId);
 }
-if  (isset($_POST['crud']) && $_POST['crud'] == "deleteTask") {
+if  (isset($_POST['crud'])) {
+    if ($_POST['crud'] == "deleteTask") {
 
-    deleteTask($_POST['id']);
+        deleteTask($_POST['id']);
+
+    } else if ($_POST['crud'] == "addTask") {
+
+        addTask(['list_id' => $_POST['list_id'], 'title' => $_POST['title']]);
+
+    }
 }
 ?>
