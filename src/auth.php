@@ -8,7 +8,7 @@ function login($username, $password) {
 
     global $conn;
 
-    $query = $conn->prepare("SELECT userID, username, password FROM users WHERE username = :username LIMIT 1");
+    $query = $conn->prepare("SELECT userID, username, role, password FROM users WHERE username = :username LIMIT 1");
     $query->bindParam(':username', $username);
 
     $query->execute();
@@ -17,7 +17,7 @@ function login($username, $password) {
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user'] = ['username' => $user['username'], 'userID' => $user['userID']];
+            $_SESSION['user'] = ['username' => $user['username'], 'userID' => $user['userID'], 'role' => $user['role']];
 
             header("Location: http://localhost/index.php"); 
 

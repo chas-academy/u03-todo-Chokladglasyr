@@ -2,7 +2,7 @@
 
 require_once 'db.php';
 dbConnect();
-require 'crud_functions.php';
+require_once 'crud_functions.php';
 
 ?>
 
@@ -19,7 +19,7 @@ require 'crud_functions.php';
 </head>
 <body>
    <section>
-    <h2>Lists</h2>
+    <h2>My lists</h2>
     <div class = "list">    
         
         <?php 

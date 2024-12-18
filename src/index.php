@@ -15,7 +15,9 @@ session_start();
 <?php
     if (isset($_SESSION['user'])) {
         echo "<h1>Welcome back {$_SESSION['user']['username']}</h1>";
-        
+        if (($_SESSION['user']['role']) == 'admin') { 
+            require 'admin.php';
+        } 
         require 'lists.php';
     } else {
     ?>
@@ -38,7 +40,8 @@ session_start();
     </form>
 
 </div>
-<?php }?>
+<?php }
+?>
 
 
 

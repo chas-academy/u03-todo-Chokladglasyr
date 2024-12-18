@@ -138,4 +138,32 @@ if (isset($_POST['is_completed'])) {
     }
 
 }
+//admin functions
+function getAllUsers() {
+    global $conn;
+    $stmt = $conn->query('SELECT username, role, userID FROM users');
+
+    return $stmt->fetchAll();
+}
+function getAllListsfromAllUsers() {
+    global $conn;
+    $stmt = $conn->query('SELECT lists.title, users.username FROM lists INNER JOIN users ON lists.userID = users.userID');
+
+    return $stmt->fetchAll();
+}
+function assignAdmin($userID) {
+    global $conn;
+    $stmt = $conn->exec('UPDATE users SET role = "admin" WHERE userID =' .$userID);
+}
+function removeAdmin($userID) {
+    global $conn;
+    $stmt = $conn->exec('UPDATE users SET role = null WHERE userID =' .$userID);
+}
+if (isset($_POST['admin'])) {
+    if ($_POST['admin'] == 'remove') {
+        removeAdmin($_POST['id']);
+    } else if ($_POST['admin'] == 'assign') {
+        assignAdmin($_POST['id']);
+    }
+}
 ?>
