@@ -8,7 +8,7 @@ Vecka 49:
 - [x] Få igång den utdelade Docker-containern för PHP och MariaDB.
 - [x] Implementera designen i HTML (t.ex. direkt i en PHP fil som ju också kan visa HTML) och CSS för en första version av applikationen.
 Vecka 50-51:  
-- [ ] Implementera PHP- och SQL-funktioner för att utföra alla CRUD-operationer.
+- [x] Implementera PHP- och SQL-funktioner för att utföra alla CRUD-operationer.
 Vecka 52:  
 Lov.  
 Vecka 1-2:  

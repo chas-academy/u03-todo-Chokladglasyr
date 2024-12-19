@@ -9,6 +9,7 @@ $lists = getAllListsfromAllUsers();
 
 ?>
 <html>
+    <div class="admin">
 <h3>Admin</h3>
 <form action="index.php" method="get">
 <select name="show">
@@ -55,5 +56,5 @@ if (isset($_GET['show'])) {
         
     }
 ?>
-
+</div>
 </html>

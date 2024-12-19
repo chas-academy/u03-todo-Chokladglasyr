@@ -5,13 +5,58 @@
     box-sizing: border-box;
 }
 
-.list div {
+h2 {
+    @include font.font-rubrik;
+    color: #ffffff;
+    text-align: center;
+    margin: 2rem auto;
+    width: 20%;
+}
+h3 {
+    @include font.font-rubrik;
+    padding-bottom: 1rem;
+}
+.list_page {
+    background-image: url(./assets/regbackgroundD.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 100vh;
+}
+.list_card {
    gap: 2rem;
-   border-bottom: solid 1px black;
-   text-align: center;
    width: 50%;
-   margin: 0 auto;
-   padding-bottom: 1rem;
+   margin: 2rem auto;
+   padding: 1rem;
+   border-radius: 5px;
+   background-color: #ffffff;
+   display: flex;
+   justify-content: space-between;
+   &>div:first-child, div:first-child>a{
+    width: 100%;
+    display: block;
+   }
+   &>div>a.title {
+    @include font.font-underrubrik;
+    font-size: 2.25rem;
+    text-decoration: none;
+    color: black;
+   }
+   &>div>p.descript {
+    @include font.font-text;
+    border-top: solid 1px black;
+    width: 15rem;
+   }
+
+}
+.list_options {
+    display: flex;
+    flex-direction: column;
+    &>a {   
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+}
+
 }
 
 .appheader{
@@ -98,4 +143,16 @@
     border-radius: 5px;
     font-size: 1.25rem;
     @include font.font-text;
+}
+.admin {
+    border-radius: 5px;
+    width: 15rem;
+    height: 60vh;
+    position: absolute;
+    background-color: #ffffff;
+    margin: 2rem 0 0 2rem;
+    text-align: center;
+    &>p {
+        @include font.font-text;
+    }
 }

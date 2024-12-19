@@ -3,13 +3,69 @@
   box-sizing: border-box;
 }
 
-.list div {
-  gap: 2rem;
-  border-bottom: solid 1px black;
+h2 {
+  font-family: "Playfair Display SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff;
   text-align: center;
-  width: 50%;
-  margin: 0 auto;
+  margin: 2rem auto;
+  width: 20%;
+}
+
+h3 {
+  font-family: "Playfair Display SC", serif;
+  font-weight: 400;
+  font-style: normal;
   padding-bottom: 1rem;
+}
+
+.list_page {
+  background-image: url(./assets/regbackgroundD.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 100vh;
+}
+
+.list_card {
+  gap: 2rem;
+  width: 50%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
+.list_card > div:first-child, .list_card div:first-child > a {
+  width: 100%;
+  display: block;
+}
+.list_card > div > a.title {
+  font-family: "Playball", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.25rem;
+  text-decoration: none;
+  color: black;
+}
+.list_card > div > p.descript {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  border-top: solid 1px black;
+  width: 15rem;
+}
+
+.list_options {
+  display: flex;
+  flex-direction: column;
+}
+.list_options > a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
 }
 
 .appheader {
@@ -113,6 +169,22 @@
   border-style: none;
   border-radius: 5px;
   font-size: 1.25rem;
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.admin {
+  border-radius: 5px;
+  width: 15rem;
+  height: 60vh;
+  position: absolute;
+  background-color: #ffffff;
+  margin: 2rem 0 0 2rem;
+  text-align: center;
+}
+.admin > p {
   font-family: "Playfair", serif;
   font-optical-sizing: auto;
   font-weight: 400;

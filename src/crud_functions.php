@@ -62,7 +62,7 @@ if (isset($_POST['crud']) && $_POST['crud'] == "addList") {
 
 } else if (isset($_POST['crud']) && $_POST['crud'] == "back"){
 
-    header("Location: http://localhost/index.php");
+    // header("Location: http://localhost/index.php");
 }
 
 //Hämtar alla uppgifter per lista
