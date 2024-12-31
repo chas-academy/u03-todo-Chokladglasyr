@@ -4,6 +4,7 @@
 $primaryColor: #ffffff;
 $secondaryColor: #000000;
 $BTNgreen: #3DBD45;
+$BTNred: #d35241;
 
 
 * {
@@ -121,21 +122,49 @@ h4 {
     }
 }
 .newList {
+    background-color: $primaryColor;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    top: 25rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 0.5rem 8rem;
+    border: solid black 1px;
+    border-radius: 5px;
     &>input{
         background-color: $primaryColor;
-        border-style: none;
+        border: solid 1px black;
         border-radius: 5px;
         font-size: 1.25rem;
         @include font.font-text;
         padding: 0.25rem;   
     }
-    &>button {
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &>div>button {
         @include font.BTN;
-        width: 5rem;
         @include font.font-text;
-
+    }
+    h2 {
+        color: $secondaryColor;
+        // margin: 0;
+        width: 20rem;
+        border-bottom: solid 1px $secondaryColor;
+    }
+    @include MQ.small {
+        padding: 0.5rem 4rem;
+        width: 70%;
     }
 
+}
+.BTNcancel {
+    background-color: $BTNred;
 }
 
 .addTask form input{
@@ -277,7 +306,7 @@ h4 {
     }
     &>form>button {
         @include font.BTN;
-        background-color: #d35241;
+        background-color: $BTNred;
         
 
     }

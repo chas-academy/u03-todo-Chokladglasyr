@@ -15,8 +15,10 @@
         <h2>Edit</h2>
             <div>
                 <!-- Input for title, set placeholder value as title from dB -->
+                <label>Title</label>
                 <input type="text" name="title" placeholder="Title" value="<?=$list['title']?>">
                 <!-- Input for description, set placeholder value as descriptione from dB -->
+                <label>Description</label>
                 <input type="text" name="description" placeholder="Description:" value="<?=$list['description'] ?>">
                 <!-- Give ID to list so function knows where to update -->
                 <input type="hidden" name="id" value="<?=$list['listID']?>">
