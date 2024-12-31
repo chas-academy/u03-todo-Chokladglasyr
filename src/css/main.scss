@@ -1,78 +1,109 @@
 @use 'fonts' as font;
+@use 'mediaQuery' as MQ;
+
+$primaryColor: #ffffff;
+$secondaryColor: #000000;
+$BTNgreen: #3DBD45;
+
 
 * {
     margin: 0;
     box-sizing: border-box;
 }
-
-h2 {
+h1, h2 {
     @include font.font-rubrik;
-    color: #ffffff;
+    text-align: center;
+}
+h1 {
+    margin: 4rem 0 4rem 0;
+    color: $primaryColor;
+}
+h2 {
     text-align: center;
     margin: 2rem auto;
     width: 20%;
+    color: $primaryColor
 }
 h3 {
     @include font.font-rubrik;
     padding-bottom: 1rem;
+}
+h4 {
+    @include font.font-rubrik;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 .list_page {
     background-image: url(./assets/regbackgroundD.png);
     background-repeat: no-repeat;
     background-size: 100% auto;
     height: 100vh;
+    overflow: scroll;
+    &>section {
+        padding: 4rem;
+    }
+    @include MQ.large {
+        background-image: url(./assets/regbackgroundM.png);
+        background-attachment: fixed;
+        
+    }
+    @include MQ.small {
+        background-image: url(./assets/regbackground.png);
+        background-attachment: fixed;
+    }
+}
+.firstMessage {
+    @include font.font-underrubrik;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: $primaryColor;
+    border-radius: 5px;
+    width: 30%;
+    margin: 0 auto;
+    padding: 2rem;
 }
 .list_card {
-   gap: 2rem;
-   width: 50%;
-   margin: 2rem auto;
-   padding: 1rem;
-   border-radius: 5px;
-   background-color: #ffffff;
-   display: flex;
-   justify-content: space-between;
-   &>div:first-child, div:first-child>a{
+    gap: 2rem;
+    width: 25rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: $primaryColor;
+    display: flex;
+    justify-content: space-between;
+
+    &>div:first-child, div:first-child>a {
     width: 100%;
     display: block;
-   }
-   &>div>a.title {
-    @include font.font-underrubrik;
-    font-size: 2.25rem;
-    text-decoration: none;
-    color: black;
-   }
-   &>div>p.descript {
-    @include font.font-text;
-    border-top: solid 1px black;
-    width: 15rem;
-   }
+    }
 
+    &>div>a.title {
+        @include font.font-underrubrik;
+        font-size: 2.25rem;
+        text-decoration: none;
+        color: $secondaryColor;
+    }
+
+    &>div>p.descript {
+        @include font.font-text;
+        border-top: solid 1px black;
+        width: 15rem;
+    }
+
+    @include MQ.medium {
+        width: auto;
+    }
 }
 .list_options {
     display: flex;
     flex-direction: column;
     &>a {   
     text-decoration: none;
-    color: black;
+    color: $secondaryColor;
     font-size: 1.5rem;
-}
+    }
 
-}
-
-.appheader{
-    text-align: center;
-    background-image: url(./assets/headingbackgroundlogin.png);
-    width: 306px;
-    height: 78px;
-    padding-top: 0.75rem;
-    @include font.font-rubrik;
-}
-.appheaderReg{
-    text-align: center;
-    background-image: url(./assets/headingbackgroundlogin.png);
-    width: 306px;
-    padding-top: 0.75rem;
-    @include font.font-rubrik;
 }
 .createCustom {
     margin-top: 2rem;
@@ -80,63 +111,33 @@ h3 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
- 
+    &>a {
+        @include font.BTN;
+        background-color: $primaryColor;
+        width: 12rem;
+        text-decoration: none;
+        color: $secondaryColor;
+        margin-bottom: 4rem;
+    }
 }
-.login {
-    background-image: url(./assets/loginbackgroundD.png);
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    height: 100vh;
-    display: flex;
-}
-.login_card {
-    background-color: #FFFFFF;
-    width: 316px;
-    height: 40vh;
-    padding: 2rem;
-    padding-top: 1rem;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 5px;
-}
-.login_card input {
-    background-color: #D9D9D9;
-    border-style: none;
-    border-radius: 5px;
-    padding: 0.5rem;
-    width: 218px;
-    font-size: 1.25rem;
-    @include font.font-text;
-}
-.login_card form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0.5rem;
-    &>p {
+.newList {
+    &>input{
+        background-color: $primaryColor;
+        border-style: none;
+        border-radius: 5px;
+        font-size: 1.25rem;
         @include font.font-text;
-        font-size: 1rem;
+        padding: 0.25rem;   
     }
     &>button {
-        @include font.font-rubrik;
-        color: #FFFFFF;
-        font-size: 1.25rem;
-        padding: 0.5rem;
-        margin: 0.5rem;
-        border-radius: 5px;
-        border-style: none;
-        &.loginBTN {
-            width: 10rem;
-            background-color: #3DBD45;
-        }
-        &.registerBTN {
-            width: 6rem;
-            background-color: #5274CC;
-        }
+        @include font.BTN;
+        width: 5rem;
+        @include font.font-text;
+
     }
+
 }
+
 .addTask form input{
     background-color: #D9D9D9;
     border-style: none;
@@ -147,12 +148,141 @@ h3 {
 .admin {
     border-radius: 5px;
     width: 15rem;
-    height: 60vh;
+    height: 40vh; 
     position: absolute;
-    background-color: #ffffff;
+    background-color: $primaryColor;
     margin: 2rem 0 0 2rem;
     text-align: center;
+    overflow: scroll;
     &>p {
         @include font.font-text;
     }
+
+    &>form>select>option {
+        @include font.font-text;
+    }
+    @include MQ.medium {
+        margin: 2rem 0 0 0;
+        overflow: scroll;
+        position: sticky;
+        top: 15rem;
+    }
+    @include MQ.small {
+        height: 30vh;
+        top: 0;
+        position: static;
+    }
+}
+.list_containerAdmin {
+
+    @include MQ.medium {
+        display: flex;
+        margin: 4rem;
+        justify-content: space-around;
+        @include MQ.small {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+}
+.list_container {
+    justify-content: center;
+}
+.goBTN {
+    @include font.BTN;
+    width: 4rem;
+    font-size: 1rem;
+    background-color: $BTNgreen;
+}
+.admin_container {
+    display: flex;
+    flex-direction: column;
+}
+.user_card1, .user_card2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 1rem 0.5rem 0 0.5rem;
+    border-radius: 5px;
+    &>form>button {
+        width: 5rem;
+    }
+}
+.user_card1 {
+    background-color: #bce7be;
+}
+.user_card2 {
+    background-color: #b1e6e6;
+}
+.list_card_admin {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0.5rem 0 0.5rem;
+    padding: 0.5rem;
+    background-color: #dbdbdb;
+}
+.footer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+}
+.footer>a {
+    @include font.font-rubrik;
+    background-color: $primaryColor;
+    border-radius:70px; 
+    height: 6rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: $secondaryColor;
+    font-size: 1.25rem;
+}
+.footer>#back {
+    position: absolute;
+    left: 20%;
+    bottom: 5rem;
+    @include MQ.medium {
+        position: static;
+    }
+}
+.footer>#logout {
+    position: absolute;
+    right: 20%;
+    bottom: 5rem;
+    @include MQ.medium {
+        position: static;
+    }
+}
+
+.delete {
+    @include font.font-text;
+    background-color: $primaryColor;
+    border-radius: 5px;
+    width: 20rem;
+    text-align: center;
+    position: absolute;
+    top: 20rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 0.5rem;
+    border: solid black 1px;
+    &>h2 {
+        width: 100%;
+        margin: 0;
+    }
+    &>form>button {
+        @include font.BTN;
+        background-color: #d35241;
+        
+
+    }
+    &>form>#yes {
+        background-color: $BTNgreen;
+    }
+  
 }

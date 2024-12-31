@@ -3,6 +3,7 @@ session_start();
 require_once "db.php";
 dbConnect();
 
+// Function to log in user, check password and username to dB
 function login($username, $password) {
     $_SESSION['user'] = null;
 
@@ -29,6 +30,7 @@ function login($username, $password) {
 
 }
 
+// Function to register new user, insert into table for users new password and username
 function register($username, $password) {
 
    global $conn;

@@ -141,7 +141,7 @@ if (isset($_POST['is_completed'])) {
 //admin functions
 function getAllUsers() {
     global $conn;
-    $stmt = $conn->query('SELECT username, role, userID FROM users');
+    $stmt = $conn->query('SELECT username, role, userID FROM users ORDER BY role');
 
     return $stmt->fetchAll();
 }

@@ -1,0 +1,155 @@
+@use 'fonts' as font;
+@use 'main' as M;
+@use 'mediaQuery' as MQ;
+
+.oneList {
+    background-image: url(./assets/listbackgroundD.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 100vh;
+    overflow: scroll;
+
+    @include MQ.medium {
+        background-image: url(./assets/listbackground.png);
+        background-attachment: fixed;
+    }
+}
+.oneList>section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h2 {
+    color: M.$secondaryColor;
+    width: 50%;
+    border-bottom: solid 1px M.$secondaryColor;
+    margin-bottom: 0;
+    
+}
+.task_container {
+    background-color: M.$primaryColor;
+    border-radius: 5px;
+    width: 390px;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+    // overflow: scroll;
+    &>a {
+        position: relative;
+        left: 80%;
+        top: -3rem;
+    }
+}
+
+h3 {
+    @include font.font-rubrik;
+    padding: 1rem;
+ 
+    
+}
+h4 {
+    @include font.font-text;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+.tasks {
+   display: flex;
+   justify-content: space-between;
+   padding: 0.5rem 1rem;
+
+}
+.todo {
+    padding-bottom: 1rem;
+    @include font.font-text;
+}
+.completed {
+    padding-bottom: 2rem;
+    @include font.font-text;
+    &>.tasks>p {
+        text-decoration: line-through;
+    }
+    &>h3 {
+        border-top: solid 1px black;
+    }
+
+}
+.message {
+    text-align: center;
+    padding: 0.5rem;
+
+}
+.addTask {
+    padding: 2rem 1rem;
+    border-top: dashed black 1px;
+
+    &>form {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        &>input {
+            background-color: M.$primaryColor;
+            border: 1px solid black;
+            padding-left: 0.5rem;
+            
+        }
+    }
+}
+.BTN, .BTNdelete, .BTNadd {
+    @include font.font-rubrik;
+    margin-left: 0.5rem;
+    font-weight: 600;
+    padding: 0.25rem;
+}
+.BTN {
+    width: 5rem;
+}
+.BTNadd {
+    width: 7.5rem;
+}
+.BTNdelete {
+    padding: 0.25rem 0.5rem;
+}
+.footer {
+    padding-bottom: 0;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+    
+}
+.footer>#back, .footer>#logout {
+
+    @include MQ.medium {
+        position: static;
+
+    }
+
+
+}
+.editList>form {
+    background-color: M.$primaryColor;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    top: 25rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 0.5rem 8rem;
+    border: solid black 1px;
+    border-radius: 5px;
+    input {
+        // background-color: #D9D9D9;
+        margin-top: 2rem;
+        border-radius: 5px;
+        font-size: 1.25rem;
+        @include font.font-text;
+    }
+    div:nth-child(2){
+        display: flex;
+        flex-direction: column;
+    }
+}
+.BTNedit, .BTNcancel {
+    @include font.BTN;
+}

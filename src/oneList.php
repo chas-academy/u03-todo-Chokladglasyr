@@ -12,87 +12,119 @@ require 'crud_functions.php';
     <title>List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">    <link rel="stylesheet" href="./css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="./css/oneList.css">
 </head>
 <body>
-    <section class="list">
-    <?php
-    if(isset($_GET['listID'])) { 
-      
-        $checkedTasks = getTasksAndchecked($_GET['listID']);
-        $uncheckedTasks = getTasksAndunchecked($_GET['listID']);
-        
-        $listTitle = getListOne($_GET['listID']);?>
+    <div class="oneList">
+        <section>
+            <div class="task_container">
+                <?php
+                // Get one list by checking list ID
+                if(isset($_GET['listID'])) : 
+                    // get all checked task and all unchecked tasks from DB
+                    $checkedTasks = getTasksAndchecked($_GET['listID']);
+                    $uncheckedTasks = getTasksAndunchecked($_GET['listID']);
+                    
+                    // get data for one list from DB
+                    $listTitle = getListOne($_GET['listID']);?>
+                    <!-- Print out title and description from the listdata for the one list from dB -->
+                    <h2><?=$listTitle['title'];?></h2>
+                    <h4><?=$listTitle['description'];?></h4>
+                    
+                    <!-- Print out a link button to edit title and descript for list -->
+                    <a href="oneList.php?listID=<?= $listTitle['listID'];?>&crud=editList"><img src="./css/assets/editBTN.png"></a>
+                    <?php 
+                    // IF user clicked on button show edit.php
+                    if(isset($_GET['crud']) && $_GET['crud'] == 'editList') {
+                        
+                        require 'edit.php';
+                    } ?>
 
-        <h2><?=$listTitle['title'];?></h2>
-        <h3><?=$listTitle['description'];?></h3>
-        
-        <a href="oneList.php?listID=<?= $listTitle['listID'];?>&crud=editList">Edit</a>
-        <?php 
-          if(isset($_GET['crud']) && $_GET['crud'] == 'editList') {
-            
-              require 'edit.php';
-          }
-          ?>
-        <?php
-        if (!$checkedTasks && !$uncheckedTasks) { ?>
+                    <?php
+                    // IF no tasks found in dB print out message that list is empty
+                    if (!$checkedTasks && !$uncheckedTasks) { ?>
 
-            <p class="message">You have no tasks in this list!</p>
+                        <p class="message">You have no tasks in this list!</p>
 
-        <?php } else { ?>
+                    <?php } else { ?>
 
-        <h3>To do</h3>
-        <?php
-        if (!$uncheckedTasks) {?>
-            <p>You have completed all your tasks!</p>
-        <?php
-        }
-        foreach ($uncheckedTasks as $uncheckedTask): ?>
-            <div>
-                <p><?php echo $uncheckedTask['title']; ?></p>
-                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($uncheckedTask['is_completed']) { echo 'checked';} ?>> -->
-                <form action="" method="post">
-                <input type="hidden" name="id" value="<?=$uncheckedTask['taskID']?>">
-                <?php var_dump($uncheckedTask['taskID']);?>
-                <button type="submit" name="is_completed" value=0>Done</button>
-                <button type="submit" name="crud" value="deleteTask">X</button>
-            </form>
+                    <!-- Print out list of unchecked tasks from dB -->
+                    <div class="todo">
+                        <h3>To do</h3>
+                        <?php
+                        // IF unchecked is empty print out message that all is completed
+                        if (!$uncheckedTasks): ?>
+                            <p class="message">You have completed all your tasks!</p>
+                        <?php endif;
+
+                        foreach ($uncheckedTasks as $uncheckedTask): ?>
+                            <!-- Print out all unchecked tasks avaiable -->
+                            <div class="tasks">
+                                <p><?php echo $uncheckedTask['title']; ?></p>
+                                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($uncheckedTask['is_completed']) { echo 'checked';} ?>> -->
+                                
+                                <form action="" method="post">
+                                    <!-- Give hidden ID to specific task -->
+                                    <input type="hidden" name="id" value="<?=$uncheckedTask['taskID']?>">
+                                    <!-- <?php var_dump($uncheckedTask['taskID']);?> -->
+                                    <!-- Button to check task as done -->
+                                    <button class="BTN" type="submit" name="is_completed" value=0>Done</button>
+                                    <!-- Button to delete task -->
+                                    <button class="BTNdelete" type="submit" name="crud" value="deleteTask">X</button>
+                                </form>
+                            </div>
+
+                        <?php endforeach;?>
+                    </div>
+                    <!-- Print out all checked tasks -->
+                    <div class="completed">
+                        <h3>Completed</h3>
+                        <?php
+                        // IF there is no checked tasks print out that user has no completed tasks
+                        if (!$checkedTasks): ?>
+                            <p class="message">You have no completed tasks!</p>
+                        <?php endif;
+
+                        foreach ($checkedTasks as $checkedTask): ?>
+
+                            <div class="tasks">
+                                <p><?php echo $checkedTask['title']; ?></p>
+                                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($checkedTask['is_completed']) { echo 'checked';} ?>> -->
+                                <form action="" method="post">
+                                    <!-- give ID to specific task -->
+                                    <input type="hidden" name="id" value="<?=$checkedTask['taskID']?>">
+                                    <!-- <?php var_dump($checkedTask['taskID']);?> -->
+                                    <!-- Button to regret task being done -->
+                                    <button class="BTN" type="submit" name="is_completed" value=1>Regret</button>
+                                    <!-- Button to delete task -->
+                                    <button class="BTNdelete" type="submit" name="crud" value="deleteTask">X</button>
+                                </form>
+                            </div>
+                        
+                        <?php endforeach; ?>  
+                    </div> 
+                    <?php } ?>
+                    <!-- Form to add more tasks -->
+                    <div class="addTask">
+                        <form action="" method="POST">
+                            <!-- Give listID to task to give destination for task input in dB -->
+                            <input type="hidden" name="listID" value="<?= $listTitle['listID']; ?>">
+                            <!-- <?php var_dump($listTitle['listID']);?> -->
+                            <!-- Input for user to write task title -->
+                            <input type="text" name="title" placeholder="Task:" required>
+                            <!-- Button to add task -->
+                            <button class="BTNadd" type="submit" name="crud" value="addTask">Add <span>&#43;</span></button>
+                        </form>
+                    </div>
+                <?php endif; ?>
             </div>
-            <?php 
+        </section>
+        <div>
+            <!-- Add footer for back and logout buttons -->
+            <?php require_once 'footer.php';?>
+        </div>
+   </div>
 
-    
-            endforeach;?>
-            <h3>Completed</h3>
-            <?php
-            if (!$checkedTasks) {?>
-                <p>You have no completed tasks!</p>
-            <?php
-            }
-            foreach ($checkedTasks as $checkedTask): ?>
-            <div>
-                <p><?php echo $checkedTask['title']; ?></p>
-                <!-- <input value="checked" type="checkbox" name="is_completed" <?php if($checkedTask['is_completed']) { echo 'checked';} ?>> -->
-                <form action="" method="post">
-                <input type="hidden" name="id" value="<?=$checkedTask['taskID']?>">
-                <?php var_dump($checkedTask['taskID']);?>
-                <button type="submit" name="is_completed" value=1>Regret</button>
-                <button type="submit" name="crud" value="deleteTask">X</button>
-            </form>
-            </div>
-            <?php 
-            endforeach; 
-        } 
-    } ?>   
-   
-    </section>    
-    <div class="addTask">
-        <form action="" method="POST">
-            <input type="hidden" name="listID" value="<?= $listTitle['listID']; ?>">
-            <?php var_dump($listTitle['listID']);?>
-            <input type="text" name="title" placeholder="Task:">
-            <button type="submit" name="crud" value="addTask">Add <span>&#43;</span></button>
-        </form>
-    </div> 
-    <?php require_once 'footer.php';?>
 </body>
 </html>
