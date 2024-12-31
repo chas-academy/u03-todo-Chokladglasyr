@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "db.php";
+require_once "crud_functions.php";
 dbConnect();
 
 // Function to log in user, check password and username to dB
@@ -48,12 +49,14 @@ function register($username, $password) {
 }
 
 if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
-
-    login($_POST['username'], $_POST['password']);
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
+    login($username, $password);
 
 } else if (isset($_POST['auth']) && $_POST['auth'] == 'register') {
-
-    register($_POST['username'], $_POST['password']);
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
+    register($username, $password);
 
 } else {
     header("Location: http://localhost/index.php");

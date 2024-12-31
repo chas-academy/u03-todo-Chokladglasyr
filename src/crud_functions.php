@@ -1,5 +1,12 @@
 <?php
+// Function to sanitize
+function sanitizeInput($input) {
+    $input = trim($input);
+    $input = htmlspecialchars($input);
+    $input = stripslashes($input);
 
+    return $input;
+}
 //Hämtar alla listor (per user i framtiden)
 function getListAll($userID) {
     global $conn;
@@ -49,12 +56,14 @@ function deleteList($listID){
 
 //if sats för om det ska vara lägga till/ ändra eller deleta en lista
 if (isset($_POST['crud']) && $_POST['crud'] == "addList") {
-
-    addList(['title' => $_POST['title'], 'description' => $_POST['description'], 'userID' => $_POST['userID']]);
+    $title= sanitizeInput($_POST['title']);
+    $description=sanitizeInput($_POST['description']);
+    addList(['title' => $title, 'description' => $description, 'userID' => $_POST['userID']]);
 
 } else if (isset($_POST['crud']) && $_POST['crud'] == "editList") {
-
-    editList(['listID' => $_POST['id'],'title' => $_POST['title'], 'description' => $_POST['description']]);
+    $title= sanitizeInput($_POST['title']);
+    $description=sanitizeInput($_POST['description']);
+    editList(['listID' => $_POST['id'],'title' => $title, 'description' => $description]);
 
 } else if  (isset($_POST['crud']) && $_POST['crud'] == "deleteList") {
 
@@ -113,8 +122,8 @@ if  (isset($_POST['crud'])) {
         deleteTask($_POST['id']);
 
     } else if ($_POST['crud'] == "addTask") {
-
-        addTask(['listID' => $_POST['listID'], 'title' => $_POST['title']]);
+        $title = sanitizeInput($_POST['title']);
+        addTask(['listID' => $_POST['listID'], 'title' => $title]);
 
     }
 }
