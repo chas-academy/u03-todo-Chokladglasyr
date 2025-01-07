@@ -1,4 +1,20 @@
 <?php
+
+// Create an admin account
+// function createNonDeletableAdmin() {
+//     global $conn; 
+//     $hashedPassword = password_hash('admin', PASSWORD_DEFAULT);
+
+//     $stmt = $conn->prepare("INSERT INTO users(username, password, role) VALUES
+//     (:title, :password, :role");
+//     $stmt->bindParam(':title', 'admin');
+//     $stmt->bindParam(':password', $hashedPassword);
+//     $stmt->bindParam(':role', 'admin');
+   
+//     $stmt->execute();
+// }
+
+
 // Function to sanitize
 function sanitizeInput($input) {
     $input = trim($input);
@@ -32,6 +48,122 @@ function addList($listData) {
     $stmt->execute();
 
     // header("Location: http://localhost");
+
+}
+function checkListTitleFromUser($userID) {
+    global $conn;
+    $listTitle = "";
+    switch ($_POST['new_list']) {
+        case 1:
+            $listTitle = "Gift List";
+            break;
+        case 2:
+            $listTitle = "Groceries";
+            break;
+        case 3:
+            $listTitle = "Event List";
+            break;
+        case 4:
+            $listTitle = "Dinner List";
+            break;
+        case 5:
+            $listTitle = "Dessert List";
+            break;
+        case 6:
+            $listTitle = "Decorations List";
+            break;
+    }
+    $stmt = $conn->query("SELECT listID FROM lists WHERE userID = $userID AND title = '$listTitle'");
+ 
+    return $stmt->fetch();
+}
+// Add specific list with predefined tasks
+function addPredefinedList($userID) {
+    global $conn;
+    $ListTitle = "";
+    $ListDescription = "";
+
+    switch ($_POST['new_list']) {
+        case 1:
+            $ListTitle = "Gift List";
+            $ListDescription = "Who to gift";
+            break;
+        case 2:
+            $ListTitle = "Groceries";
+            $ListDescription = "What to buy";
+            break;
+        case 3:
+            $ListTitle = "Event List";
+            $ListDescription = "Where to go";
+            break;
+        case 4:
+            $ListTitle = "Dinner List";
+            $ListDescription = "What to eat";
+            break;
+        case 5:
+            $ListTitle = "Dessert List";
+            $ListDescription = "What to bake";
+            break;
+        case 6:
+            $ListTitle = "Decorations List";
+            $ListDescription = "Where to decorate";
+            break;
+    }
+    // var_dump($ListTitle);
+    $stmt = $conn->prepare("INSERT INTO lists(title, description, userID) VALUES 
+    (:title, :description, $userID)");
+    $stmt->bindParam(':title', $ListTitle);
+    $stmt->bindParam(':description', $ListDescription);
+
+    $stmt->execute();
+
+    $list = checkListTitleFromUser($userID);
+    $listID = $list['listID'];
+    // var_dump($listID);
+    switch ($_POST['new_list']) {
+        case 1:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'Mamma'),
+            ($listID, 'Pappa'),
+            ($listID, 'Mormor'),
+            ($listID, 'Morfar')");
+            break;
+        case 2:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'smör'),
+            ($listID, 'ägg'),
+            ($listID, 'ljus sirap'),
+            ($listID, 'vetemjöl')");
+            break;
+        case 3:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'Julmarknad Gamla stan'),
+            ($listID, 'Nobel week lights'),
+            ($listID, 'Barnen lucia på skola'),
+            ($listID, 'Julbord med jobbet')");
+            break;
+        case 4:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'Janssons fretelse'),
+            ($listID, 'Julskinka'),
+            ($listID, 'Rödbetssallad'),
+            ($listID, 'Julköttbullar')");
+            break;
+        case 5:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'Chokladkola'),
+            ($listID, 'Lussebullar'),
+            ($listID, 'Pepparkakor'),
+            ($listID, 'Mintkyssar')");
+            break;
+        case 6:
+            $stmt = $conn->exec("INSERT INTO tasks(listID, title) VALUES 
+            ($listID, 'Pynta altan/balkongen'),
+            ($listID, 'Klä julgranen'),
+            ($listID, 'Ta fram adventsljustakar'),
+            ($listID, 'Krans på dörren')");
+            break;
+    }
 
 }
 //ändra list titel och descript

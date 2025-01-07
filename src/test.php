@@ -76,53 +76,40 @@ require_once 'crud_functions.php';
             <form action="index.php" method="POST">
               <select name="new_list" >
                 <option value="">Create a new list</option>
-                <option value="1">Gift List</option>
-                <option value="2">Groceries</option>
-                <option value="3">Event List</option>
-                <option value="4">Dinner List</option>
-                <option value="5">Dessert List</option>
-                <option value="6">Decorations List</option>
-                <option value="7">Custom List</option>
+                <option value="gift">Gift List</option>
+                <option value="groceries">Groceries</option>
+                <option value="event">Event List</option>
+                <option value="dinner">Dinner List</option>
+                <option value="dessert">Dessert List</option>
+                <option value="decoration">Decorations List</option>
+                <option value="custom">Custom List</option>
               </select>
               <button type="submit">Create</button>
             </form>
-            <?php 
-           
-            if (isset($_POST['new_list'])) {
-                if ($_POST['new_list'] == 7) {
+           <?php if (isset($_POST['new_list'])) {
+            if ($_POST['new_list'] == 'gift') {
 
-                    require 'add.php';
+              $checkList = checkListNameFromUser($_SESSION['user']['userID']);
+              
+              if (empty($checkList)) {
+                echo "creating list...";
+                addGiftList($_SESSION['user']['userID']);
+              } else {
+                echo "already there";
+              }
 
-                }else {
-
-                    $checkListTitle = checkListTitleFromUser($_SESSION['user']['userID']);
-                
-                    if (empty($checkListTitle)) { ?>
-
-                        <p class = "messageAlreadyExists">Creating list...</p>
-
-                    <?php
-
-                        addPredefinedList($_SESSION['user']['userID']);
-                    
-                            
-                    } else { ?>
-                    
-                    <p class = "messageAlreadyExists">You already have a list with that name!</p>
-                    
-                    <?php }
-
-            }} ?>
+            }
+           }  ?>
             <!-- Link to add a new list -->
-            <!-- <a href="http://localhost/index.php?userID=<?=($_SESSION['user']['userID'])?>&crud=addList">Create new list</a> -->
+            <a href="http://localhost/index.php?userID=<?=($_SESSION['user']['userID'])?>&crud=addList">Create new list</a>
 
             <?php
             // IF user clicked to add show add.php
-            // if(isset($_GET['crud']) && $_GET['crud'] == 'addList') {
+            if(isset($_GET['crud']) && $_GET['crud'] == 'addList') {
               
-            //     require 'add.php';
+                require 'add.php';
 
-            // } ?>
+            } ?>
           </div>  
       </section>
     </div>   

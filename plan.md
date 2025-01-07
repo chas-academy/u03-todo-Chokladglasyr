@@ -17,17 +17,17 @@ Vecka 1-2:
 - [ ] Sista dagen i vecka 2 lämnar ni in uppgiften.
 
 ### MVP (Minimal Viable Product)
-+ Skapa en lista som man kan ändra titel och beskrivning. 
-+ Skapa todo uppgifter som man kan markera som klara eller ej.
-+ Kunna radera uppgifter och lista.
++ [x] Skapa en lista som man kan ändra titel och beskrivning. 
++ [x] Skapa todo uppgifter som man kan markera som klara eller ej.
++ [x] Kunna radera uppgifter och lista.
 
 ### Feature Expansion
-+ Skapa halvfärdiga predefined listor med predefined uppgifter som går att radera och ändra.
-+ Inloggning + registrera sig.
-+ Hel bilder i bakgrunden.
-+ timestamp
-+ Skapa tester
-+ ENV för lösenord
-+ säga till ifall username redan finns
-+ inte alla ska se alla listor
-+ lägg till en admin och admin features
++ [ ] Skapa halvfärdiga predefined listor med predefined uppgifter som går att radera och ändra.
++ [x] Inloggning + registrera sig.
++ [x] Hel bilder i bakgrunden.
++ [ ] timestamp
++ [ ] Skapa tester
++ [ ] ENVironment för lösenord
++ [ ] säga till ifall username redan finns
++ [x] inte alla ska se alla listor
++ [x] lägg till en admin och admin features

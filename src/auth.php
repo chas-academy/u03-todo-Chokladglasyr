@@ -4,6 +4,7 @@ require_once "db.php";
 require_once "crud_functions.php";
 dbConnect();
 
+
 // Function to log in user, check password and username to dB
 function login($username, $password) {
     $_SESSION['user'] = null;

@@ -19,9 +19,9 @@
             <!-- Button to add title and description to user in dB -->
             <button type="submit" name="crud" value="addList">Add <span>&#43;</span></button>
             <!-- Button to cancel -->
-            <button class="BTNcancel" type="submit" formnovalidate>Cancel</button>
+            <button class="BTNcancel" type="submit" name="crud" value="back" formnovalidate>Cancel</button>
         </div>
-    </form>
+    </form> 
 
     
 </html>

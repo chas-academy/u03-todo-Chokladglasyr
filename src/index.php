@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+// Set a refresh for new predefined list, it doesnt automatically show up, needs a reload.
+if (isset($_POST['new_list']) && ($_POST['new_list'] != 7)) {
+    header("refresh: 2;");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +22,9 @@ session_start();
     if (isset($_SESSION['user'])) {
 
         require 'lists.php';
+
     } else {
+
     ?>
 <body class="login">
 <!-- IF session variable is null show login -->

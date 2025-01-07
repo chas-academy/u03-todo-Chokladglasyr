@@ -166,7 +166,9 @@ h4 {
 .BTNcancel {
     background-color: $BTNred;
 }
-
+.messageAlreadyExists {
+    background-color: $primaryColor;
+}
 .addTask form input{
     background-color: #D9D9D9;
     border-style: none;
