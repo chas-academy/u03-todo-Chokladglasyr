@@ -9,6 +9,7 @@
 h1 {
     @include font.font-rubrik;
     margin: 0;
+    color: M.$secondaryColor;
     
 }
 .appheader{
