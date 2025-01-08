@@ -1,9 +1,19 @@
+CREATE TABLE users (
+    userID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    username VARCHAR (150) NOT NULL UNIQUE,
+    password CHAR (60) NOT NULL,
+    role VARCHAR (150)
+);
+
 CREATE TABLE lists (
     listID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    userID INT NOT NULL,
+    FOREIGN KEY (userID) REFERENCES users(userID) 
+
 );
 
 CREATE TABLE tasks (
@@ -12,15 +22,12 @@ CREATE TABLE tasks (
     is_completed BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    list_id INT NOT NULL
-);
+    listID INT NOT NULL,
+    FOREIGN KEY (listID) REFERENCES lists(listID) ON DELETE CASCADE
 
-CREATE TABLE users (
-    userID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    username VARCHAR (150) NOT NULL,
-    password CHAR (60) NOT NULL,
-    role VARCHAR (150)
-)
+);
+INSERT INTO users(userID, username, password, role) VALUES
+('1', 'admin', '$2a$12$GNvXC3RhyO2Ed08OMqTn5.HsBApDDZf4CEMSVlRCSu.cxrEWVlqQy', 'admin');
 
 INSERT INTO lists(title, description, userID) VALUES
 ('List 1', 'Kitchen', '1'),
@@ -38,5 +45,3 @@ INSERT INTO tasks(title, listID) VALUES
 ('Task 2', 3),
 ('Task 3', 3);
 
-INSERT INTO users(userID, username, password, role) VALUES
-(DEFAULT, 'admin', password('admin'), 'admin');

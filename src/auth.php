@@ -22,13 +22,14 @@ function login($username, $password) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user'] = ['username' => $user['username'], 'userID' => $user['userID'], 'role' => $user['role']];
 
-            header("Location: http://localhost/index.php"); 
+            header("Location: /"); 
 
         } else {
-           header("Location: http://localhost/index.php"); 
+            
+            header("Location: http://localhost/index.php?login=false"); 
         } 
 
-    } header("Location: http://localhost/index.php");
+    } header("Location: /");
 
 }
 
@@ -76,6 +77,7 @@ if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
     register($username, $password);
 
 } else {
-    header("Location: http://localhost/index.php");
+    
+    header("Location: /");
 }
 ?>

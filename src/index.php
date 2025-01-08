@@ -5,6 +5,9 @@ session_start();
 if (isset($_POST['new_list']) && ($_POST['new_list'] != 7)) {
     header("refresh: 2;");
     }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
