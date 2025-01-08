@@ -22,7 +22,7 @@ Vecka 1-2:
 + [x] Kunna radera uppgifter och lista.
 
 ### Feature Expansion
-+ [ ] Skapa halvfärdiga predefined listor med predefined uppgifter som går att radera och ändra.
++ [x] Skapa halvfärdiga predefined listor med predefined uppgifter som går att radera och ändra.
 + [x] Inloggning + registrera sig.
 + [x] Hel bilder i bakgrunden.
 + [ ] timestamp

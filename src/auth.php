@@ -35,18 +35,34 @@ function login($username, $password) {
 // Function to register new user, insert into table for users new password and username
 function register($username, $password) {
 
-   global $conn;
+    global $conn;
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // function checkIfUsernameExists($username) {
+    //     global $conn;
 
-    $query = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    //     $stmt = $conn->prepare("SELECT userID FROM users WHERE username = :username LIMIT 1");
+    //     $stmt->bindParam(':username', $username);
+        
+    //     $stmt->execute();
 
-    $query->bindParam(':username', $username);
-    $query->bindParam(':password', $hashedPassword);
+    //     return $stmt->fetch();
+    // }
+    
+    // $userID = checkIfUsernameExists($username);
+    // if (empty($userID)) {
 
-    $query->execute();
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    header("Location: http://localhost/index.php?login=true");
+        $query = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    
+        $query->bindParam(':username', $username);
+        $query->bindParam(':password', $hashedPassword);
+    
+        $query->execute();
+    
+        header("Location: http://localhost/index.php?login=true");
+    // } 
+
 }
 
 if (isset($_POST['auth']) && $_POST['auth'] == 'login') {

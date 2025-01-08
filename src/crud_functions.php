@@ -47,9 +47,10 @@ function addList($listData) {
 
     $stmt->execute();
 
-    // header("Location: http://localhost");
-
 }
+// FUNKTIONER FÖR ATT LÄGGA TILL EN NY LISTA
+
+// Hämta en lista som heter något specifik för att se om listan redan finns
 function checkListTitleFromUser($userID) {
     global $conn;
     $listTitle = "";
@@ -203,7 +204,6 @@ if (isset($_POST['crud']) && $_POST['crud'] == "addList") {
 
 } else if (isset($_POST['crud']) && $_POST['crud'] == "back"){
 
-    // header("Location: http://localhost/index.php");
 }
 
 //Hämtar alla uppgifter per lista
@@ -279,23 +279,28 @@ if (isset($_POST['is_completed'])) {
     }
 
 }
-//admin functions
+//ADMIN FUNCTIONS
+
+// Hämtar alla users order by rollen
 function getAllUsers() {
     global $conn;
     $stmt = $conn->query('SELECT username, role, userID FROM users ORDER BY role');
 
     return $stmt->fetchAll();
 }
+// Hämtar alla listor med en specifik userID
 function getAllListsfromAllUsers() {
     global $conn;
     $stmt = $conn->query('SELECT lists.title, users.username FROM lists INNER JOIN users ON lists.userID = users.userID');
 
     return $stmt->fetchAll();
 }
+// Assigna admin roll
 function assignAdmin($userID) {
     global $conn;
     $stmt = $conn->exec('UPDATE users SET role = "admin" WHERE userID =' .$userID);
 }
+// Ta bort admin roll
 function removeAdmin($userID) {
     global $conn;
     $stmt = $conn->exec('UPDATE users SET role = null WHERE userID =' .$userID);
