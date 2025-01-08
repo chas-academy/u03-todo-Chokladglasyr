@@ -5,6 +5,19 @@ session_start();
 if (isset($_POST['new_list']) && ($_POST['new_list'] != 7)) {
     header("refresh: 2;");
     }
+if(!empty($_SESSION['error'])) {
+    
+    header("refresh: 3;");
+    ?>
+        <div class="invalidMessage">
+            <p>&#128533</p>
+            <br>
+            <p>Oops! Something went wrong! Invalid <?php echo ($_SESSION['error'] == 'name') ? "username" : "password" ?>.</p>
+        </div>
+
+    <?php
+    $_SESSION['error'] = NULL;
+}
 
 
 

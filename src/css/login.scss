@@ -8,6 +8,7 @@
 }
 h1 {
     @include font.font-rubrik;
+    margin: 0;
     
 }
 .appheader{
@@ -84,5 +85,26 @@ h1 {
             width: 6rem;
             background-color: #5274CC;
         }
+    }
+}
+.invalidMessage {
+    background-color: M.$primaryColor;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 25rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding: 3rem;
+    border: solid black 1px;
+    border-radius: 5px;
+    @include font.font-rubrik;
+    p:first-child {
+        font-size: 50px;
+        padding-bottom: 1rem;
+    }
+    p {
+        text-align: center;
     }
 }

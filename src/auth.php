@@ -7,8 +7,8 @@ dbConnect();
 
 // Function to log in user, check password and username to dB
 function login($username, $password) {
-    $_SESSION['user'] = null;
-
+    $_SESSION['user'] = NULL;
+    $_SESSION['error'] = NULL;
     global $conn;
 
     $query = $conn->prepare("SELECT userID, username, role, password FROM users WHERE username = :username LIMIT 1");
@@ -25,11 +25,14 @@ function login($username, $password) {
             header("Location: /"); 
 
         } else {
-            
-            header("Location: http://localhost/index.php?login=false"); 
+            $_SESSION['error'] = "pw";
+            header("Location: /"); 
         } 
 
-    } header("Location: /");
+    } else{
+        $_SESSION['error'] = "name";
+        header("Location: /");
+    } 
 
 }
 
@@ -38,19 +41,19 @@ function register($username, $password) {
 
     global $conn;
 
-    // function checkIfUsernameExists($username) {
-    //     global $conn;
+    function checkIfUsernameExists($username) {
+        global $conn;
 
-    //     $stmt = $conn->prepare("SELECT userID FROM users WHERE username = :username LIMIT 1");
-    //     $stmt->bindParam(':username', $username);
+        $stmt = $conn->prepare("SELECT userID FROM users WHERE username = :username LIMIT 1");
+        $stmt->bindParam(':username', $username);
         
-    //     $stmt->execute();
+        $stmt->execute();
 
-    //     return $stmt->fetch();
-    // }
+        return $stmt->fetch();
+    }
     
-    // $userID = checkIfUsernameExists($username);
-    // if (empty($userID)) {
+    $userID = checkIfUsernameExists($username);
+    if (empty($userID)) {
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -62,7 +65,11 @@ function register($username, $password) {
         $query->execute();
     
         header("Location: http://localhost/index.php?login=true");
-    // } 
+    } else {
+        $_SESSION['error'] = "name";
+        header("Location: http://localhost/index.php?register=true"); 
+
+    }
 
 }
 
