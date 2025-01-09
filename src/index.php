@@ -7,12 +7,12 @@ if (isset($_POST['new_list']) && ($_POST['new_list'] != 7)) {
     }
 if(!empty($_SESSION['error'])) {
     
-    header("refresh: 3;");
+    header("refresh: 3; url = http://localhost/register.php?register=true");
     ?>
         <div class="invalidMessage">
             <p>&#128533</p>
             <br>
-            <p>Oops! Something went wrong! Invalid <?php echo ($_SESSION['error'] == 'name') ? "username" : "password" ?>.</p>
+            <p>Oops! Something went wrong! Invalid <?php echo ($_SESSION['error'] == 'pw') ? "password" : "username" ?>.</p>
         </div>
 
     <?php

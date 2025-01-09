@@ -67,7 +67,7 @@ function register($username, $password) {
         header("Location: http://localhost/index.php?login=true");
     } else {
         $_SESSION['error'] = "name";
-        header("Location: http://localhost/index.php?register=true"); 
+        header("Location: /"); 
 
     }
 
