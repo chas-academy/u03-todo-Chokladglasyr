@@ -16,12 +16,12 @@ if (!empty($_SESSION['newUser'])) {
         <p>New user created! Please login!</p>
     </div>
 <?php }
-if(!empty($_SESSION['error']) && $_SESSION['error'] == "register") {
+if(!empty($_SESSION['error'])) {
+    if ($_SESSION['error'] == "register"){
     header("refresh: 3; url = http://localhost/register.php?register=true");
-
-} else if (!empty($_SESSION['error'])) {
-
+    } else {
     header("refresh: 3;");
+    }
     
     ?>
         <div class="invalidMessage">

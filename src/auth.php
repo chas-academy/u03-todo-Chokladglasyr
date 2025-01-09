@@ -63,8 +63,9 @@ function register($username, $password) {
         $query->bindParam(':password', $hashedPassword);
     
         $query->execute();
-    
+        $_SESSION['newUser'] = 1;
         header("Location: http://localhost/index.php?login=true");
+
     } else {
         $_SESSION['error'] = "register";
         header("Location: /"); 
@@ -82,7 +83,7 @@ if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
     register($username, $password);
-    $_SESSION['newUser'] = 1;
+    
 
 } else {
     
