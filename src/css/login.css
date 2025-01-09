@@ -549,21 +549,4 @@ h1 {
 }
 .invalidMessage p {
   text-align: center;
-}
-
-.newUser {
-  background-color: #ffffff;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  top: 25rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 3rem;
-  border: solid black 1px;
-  border-radius: 5px;
-  font-family: "Playfair Display SC", serif;
-  font-weight: 400;
-  font-style: normal;
 }/*# sourceMappingURL=login.css.map */

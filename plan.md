@@ -12,7 +12,7 @@ Vecka 50-51:
 Vecka 52:  
 Lov.  
 Vecka 1-2:  
-- [ ] Finjustera och förbättra applikationen.
+- [x] Finjustera och förbättra applikationen.
 - [ ] Skapa en 2-3 minuter lång video där ni förklarar och demonstrerar CRUD-delarna.
 - [ ] Sista dagen i vecka 2 lämnar ni in uppgiften.
 
@@ -25,9 +25,10 @@ Vecka 1-2:
 + [x] Skapa halvfärdiga predefined listor med predefined uppgifter som går att radera och ändra.
 + [x] Inloggning + registrera sig.
 + [x] Hel bilder i bakgrunden.
-+ [ ] timestamp
-+ [ ] Skapa tester
-+ [ ] ENVironment för lösenord
-+ [ ] säga till ifall username redan finns
++ ~~[ ] timestamp~~ (ångrade mig)
++ ~~[ ] Skapa tester~~
++ ~~[ ] ENVironment för lösenord~~
++ [x] säga till ifall username redan finns
 + [x] inte alla ska se alla listor
 + [x] lägg till en admin och admin features
+
