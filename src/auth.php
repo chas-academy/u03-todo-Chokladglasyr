@@ -3,11 +3,12 @@ session_start();
 require_once "db.php";
 require_once "crud_functions.php";
 dbConnect();
-$_SESSION['error'] = NULL;
+$_SESSION['error'] = null;
 
 // Function to log in user, check password and username to dB
-function login($username, $password) {
-    $_SESSION['user'] = NULL;
+function login($username, $password)
+{
+    $_SESSION['user'] = null;
 
     global $conn;
 
@@ -15,78 +16,65 @@ function login($username, $password) {
     $query->bindParam(':username', $username);
 
     $query->execute();
-    
-    if ($query->rowCount() > 0){
-        $user = $query->fetch(PDO::FETCH_ASSOC);
 
+    if ($query->rowCount() > 0) {
+        $user = $query->fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $user['password'])) {
             $_SESSION['user'] = ['username' => $user['username'], 'userID' => $user['userID'], 'role' => $user['role']];
 
-            header("Location: /"); 
-
+            header("Location: /");
         } else {
             $_SESSION['error'] = "pw";
-            header("Location: /"); 
-        } 
-
-    } else{
-        $_SESSION['error'] = "name";
+            header("Location: /");
+        }
+    } else {
+        $_SESSION['error'] = "pw";
         header("Location: /");
-    } 
-
+    }
 }
 
 // Function to register new user, insert into table for users new password and username
-function register($username, $password) {
-    
+function register($username, $password)
+{
     global $conn;
 
-    function checkIfUsernameExists($username) {
+    function checkIfUsernameExists($username)
+    {
         global $conn;
 
         $stmt = $conn->prepare("SELECT userID FROM users WHERE username = :username LIMIT 1");
         $stmt->bindParam(':username', $username);
-        
+
         $stmt->execute();
 
         return $stmt->fetch();
     }
-    
+
     $userID = checkIfUsernameExists($username);
     if (empty($userID)) {
-
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $query = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-    
+
         $query->bindParam(':username', $username);
         $query->bindParam(':password', $hashedPassword);
-    
+
         $query->execute();
         $_SESSION['newUser'] = 1;
         header("Location: http://localhost/index.php?login=true");
-
     } else {
         $_SESSION['error'] = "register";
-        header("Location: /"); 
-
+        header("Location: /");
     }
-
 }
-
 if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
     login($username, $password);
-
 } else if (isset($_POST['auth']) && $_POST['auth'] == 'register') {
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
     register($username, $password);
-    
-
 } else {
-    
     header("Location: /");
 }
-?>

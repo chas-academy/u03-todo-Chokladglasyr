@@ -4,7 +4,7 @@ dbConnect();
 require_once 'crud_functions.php';
 
 // IF user chose to delete a list
-if($_GET['crud'] == 'deleteList'):
+if ($_GET['crud'] == 'deleteList') :
     if (isset($_GET['listID'])) {
         // Set variable to the listID for specific list user clicked delete on
         $list = getListOne($_GET['listID']);
@@ -25,5 +25,5 @@ if($_GET['crud'] == 'deleteList'):
             </form>
         </section>
     </html>
-<?php endif; ?>
+<?php endif;
     

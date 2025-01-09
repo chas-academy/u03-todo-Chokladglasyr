@@ -6,5 +6,4 @@ dbConnect();
 require_once 'crud_functions.php';
 
 session_destroy();
-header('Location: http://localhost')
-?>
+header('Location: http://localhost');
