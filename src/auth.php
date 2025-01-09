@@ -3,12 +3,12 @@ session_start();
 require_once "db.php";
 require_once "crud_functions.php";
 dbConnect();
-
+$_SESSION['error'] = NULL;
 
 // Function to log in user, check password and username to dB
 function login($username, $password) {
     $_SESSION['user'] = NULL;
-    $_SESSION['error'] = NULL;
+
     global $conn;
 
     $query = $conn->prepare("SELECT userID, username, role, password FROM users WHERE username = :username LIMIT 1");
@@ -38,7 +38,7 @@ function login($username, $password) {
 
 // Function to register new user, insert into table for users new password and username
 function register($username, $password) {
-
+    
     global $conn;
 
     function checkIfUsernameExists($username) {
@@ -66,7 +66,7 @@ function register($username, $password) {
     
         header("Location: http://localhost/index.php?login=true");
     } else {
-        $_SESSION['error'] = "name";
+        $_SESSION['error'] = "register";
         header("Location: /"); 
 
     }
@@ -82,6 +82,7 @@ if (isset($_POST['auth']) && $_POST['auth'] == 'login') {
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
     register($username, $password);
+    $_SESSION['newUser'] = 1;
 
 } else {
     

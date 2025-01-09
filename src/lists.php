@@ -4,8 +4,8 @@ require_once 'db.php';
 dbConnect();
 require_once 'crud_functions.php';
 
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@ require_once 'crud_functions.php';
 
             <p class="firstMessage">You have no lists at the moment!</p>
             
-          <?php } else
+            <?php } else
           
           foreach ($lists as $list): ?>
 
@@ -72,10 +72,10 @@ require_once 'crud_functions.php';
           } ?> 
 
           <!-- Option to add new list -->
-          <div class="createCustom">
+          <div class="createNewList">
             <form action="index.php" method="POST">
               <select name="new_list" >
-                <option value="">Create a new list</option>
+                <option value="" disabled selected>Create a new list</option>
                 <option value="1">Gift List</option>
                 <option value="2">Groceries</option>
                 <option value="3">Event List</option>

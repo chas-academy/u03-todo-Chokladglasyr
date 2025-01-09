@@ -4,20 +4,36 @@ session_start();
 // Set a refresh for new predefined list, it doesnt automatically show up, needs a reload.
 if (isset($_POST['new_list']) && ($_POST['new_list'] != 7)) {
     header("refresh: 2;");
-    }
-if(!empty($_SESSION['error'])) {
+}
+
+if (!empty($_SESSION['newUser'])) {
+    $_SESSION['newUser'] = NULL;
+    header("refresh: 2;"); ?>
     
+    <div class="invalidMessage">
+        <p>&#129395</p>
+        <br>
+        <p>New user created! Please login!</p>
+    </div>
+<?php }
+if(!empty($_SESSION['error']) && $_SESSION['error'] == "register") {
     header("refresh: 3; url = http://localhost/register.php?register=true");
+
+} else if (!empty($_SESSION['error'])) {
+
+    header("refresh: 3;");
+    
     ?>
         <div class="invalidMessage">
             <p>&#128533</p>
             <br>
-            <p>Oops! Something went wrong! Invalid <?php echo ($_SESSION['error'] == 'pw') ? "password" : "username" ?>.</p>
+            <p>Oops! Something went wrong! Invalid <? echo ($_SESSION['error'] == 'pw') ? "password" : "username" ?>.</p>
         </div>
 
     <?php
     $_SESSION['error'] = NULL;
 }
+
 
 
 

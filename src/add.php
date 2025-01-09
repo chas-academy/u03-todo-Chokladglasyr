@@ -14,7 +14,7 @@
         <!-- Input for list title -->
         <input type="text" name="title" placeholder="Title:" required>
         <!-- Input for list description -->
-        <input type="text" name="description" placeholder="Description:">
+        <input type="text" name="description" placeholder="Description:" required>
         <div>
             <!-- Button to add title and description to user in dB -->
             <button type="submit" name="crud" value="addList">Add <span>&#43;</span></button>
