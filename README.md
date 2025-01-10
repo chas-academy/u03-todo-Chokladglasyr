@@ -11,7 +11,7 @@ Conclusion: I think i preferred the [drawsql](https://drawsql.app/teams/hej-8/di
 
 1. Clone the repository from [GitHub](https://github.com/chas-academy/u03-todo-Chokladglasyr).
 2. Make sure your Docker Desktop is open.
-3. Run ```docker compose up --build``` in your terminal/code editor (within the repository).
+3. Run ```docker compose up --build``` in your terminal/code editor (within the repository). There is a seed file that will run and create tables and a kind of [superuser](#superuser).
 4. Open up "localhost" in your browser and you should now see the web application.  
 
 
@@ -78,6 +78,9 @@ With the different tasks for each list:
 + Ljusslinga på balkongen
 + Krans på dörren
 
+# Superuser
+username: admin
+pw: admin
 ----------------------------------
 # Retro
 In my figma design I had a logging out page, I skipped that because I felt it was needed.  
