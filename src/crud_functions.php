@@ -1,4 +1,5 @@
 <?php
+
 // Function to sanitize
 function sanitizeInput($input)
 {
@@ -63,7 +64,7 @@ function checkListTitleFromUser($userID)
             break;
     }
     $stmt = $conn->query("SELECT listID FROM lists WHERE userID = $userID AND title = '$listTitle'");
- 
+
     return $stmt->fetch();
 }
 // Add specific list with predefined tasks
@@ -197,14 +198,14 @@ function getTasksAndchecked($listID)
 {
     global $conn;
     $stmt = $conn->query('SELECT taskID, title, listID FROM tasks WHERE is_completed = 1 AND listID =' . $listID);
-    
+
     return $stmt->fetchAll();
 }
 function getTasksAndunchecked($listID)
 {
     global $conn;
     $stmt = $conn->query('SELECT taskID, title, listID FROM tasks WHERE is_completed = 0 AND listID =' . $listID);
-    
+
     return $stmt->fetchAll();
 }
 //hämtar en task från en lista
@@ -213,7 +214,7 @@ function getTaskOne($taskID)
 
     global $conn;
     $stmt = $conn->query('SELECT * FROM tasks WHERE taskID =' . $taskID);
- 
+
     return $stmt->fetch();
 }
 //lägga till task

@@ -202,9 +202,27 @@ h4 {
     &>p {
         @include font.font-text;
     }
-
-    &>form>select>option {
+    h4 {
+        border-bottom: solid black 1px;
+        width: 80%;
+        margin: 0 auto 1rem auto;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &>form>select {
         @include font.font-text;
+        font-size: 1rem;
+        padding: 0.25rem;
+        border-radius: 5px;
+    }
+    form>button {
+        @include font.font-text;
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
+        margin-left: 0.5rem;
     }
     @include MQ.medium {
         margin: 2rem 0 0 0;
@@ -217,6 +235,9 @@ h4 {
         top: 0;
         position: static;
     }
+}
+.assignAdmin {
+    @include font.font-text;
 }
 .list_containerAdmin {
 

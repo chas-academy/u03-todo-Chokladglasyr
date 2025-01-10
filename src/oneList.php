@@ -24,7 +24,7 @@ require 'crud_functions.php';?>
                     // get all checked task and all unchecked tasks from DB
                     $checkedTasks = getTasksAndchecked($_GET['listID']);
                     $uncheckedTasks = getTasksAndunchecked($_GET['listID']);
-                    
+
                     // get data for one list from DB
                     $listTitle = getListOne($_GET['listID']);?>
                     <!-- Print out title and description from the listdata for the one list from dB -->

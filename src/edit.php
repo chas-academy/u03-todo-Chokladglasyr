@@ -1,4 +1,3 @@
-
 <html>
     <br>
     <div class="editList">
@@ -9,7 +8,6 @@
             $list = getListOne($_GET['listID']);
             // var_dump($list);
         }?>
-        
         <!-- Set destination with listID so we know where from the list we should edit -->
         <form class="editList" action="oneList.php?listID=<?= $listTitle['listID'];?>" method="POST">
         <h2>Edit</h2>

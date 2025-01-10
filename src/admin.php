@@ -26,7 +26,7 @@ $lists = getAllListsfromAllUsers();
                 foreach ($users as $user) {
                     if ($user['username'] != 'admin') {
                         if ($user['userID'] != $_SESSION['user']['userID']) { ?>
-                            <!-- giving this a specific class depending on if role is admin or not for styling purposes -->
+                            <!-- for styling purposes -->
                             <span class="<?php
                             if ($user['role'] == 'admin') {
                                 echo 'user_card1';
@@ -40,10 +40,10 @@ $lists = getAllListsfromAllUsers();
                             <input type="hidden" name="id" value ="<?=$user['userID']?>">
                             <?php
                             if ($user['role'] == 'admin') {?>
-                            <button type="submit" name="admin" value="remove">Remove admin</button>
+                            <button class="assignAdmin" type="submit" name="admin" value="remove">Remove admin</button>
                                 <?php
                             } else {?>
-                            <button type="submit" name="admin" value="assign">Assign admin</button>
+                            <button class="assignAdmin" type="submit" name="admin" value="assign">Assign admin</button>
                                 <?php
                             }
                         }
@@ -52,7 +52,7 @@ $lists = getAllListsfromAllUsers();
                         </span>
                         <?php
                 }
-            } else if ($_GET['show'] == 'lists') {
+            } elseif ($_GET['show'] == 'lists') {
                 foreach ($lists as $list) {
                     if ($list['username'] != $_SESSION['user']['username']) { ?>
                         <span class="list_card_admin">

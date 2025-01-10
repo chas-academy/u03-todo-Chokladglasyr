@@ -25,7 +25,8 @@ if (!empty($_SESSION['error'])) {
         <div class="invalidMessage">
             <p>&#128533</p>
             <br>
-            <p>Oops! Something went wrong! Invalid <?php echo ($_SESSION['error'] == 'pw') ? "login details" : "username" ?>.</p>
+            <p>Oops! Something went wrong! Invalid 
+                <?php echo ($_SESSION['error'] == 'pw') ? "login details" : "username" ?>.</p>
         </div>
     <?php
     $_SESSION['error'] = null;

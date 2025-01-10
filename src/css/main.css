@@ -247,11 +247,33 @@ h4 {
   font-weight: 400;
   font-style: normal;
 }
-.admin > form > select > option {
+.admin h4 {
+  border-bottom: solid black 1px;
+  width: 80%;
+  margin: 0 auto 1rem auto;
+}
+.admin form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin > form > select {
   font-family: "Playfair", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 5px;
+}
+.admin form > button {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.5rem;
 }
 @media (max-width: 1200px) {
   .admin {
@@ -267,6 +289,13 @@ h4 {
     top: 0;
     position: static;
   }
+}
+
+.assignAdmin {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @media (max-width: 1200px) {

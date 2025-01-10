@@ -26,4 +26,3 @@ if ($_GET['crud'] == 'deleteList') :
         </section>
     </html>
 <?php endif;
-    

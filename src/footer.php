@@ -5,5 +5,4 @@
         <!-- Button to logout -->
         <a id="logout" href="logout.php">Log out</a>
     </div>
-
 </footer>
