@@ -218,6 +218,10 @@ h4 {
   width: fit-content;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .addTask form input {
@@ -344,6 +348,10 @@ h4 {
   padding: 0.5rem;
   margin: 1rem 0.5rem 0 0.5rem;
   border-radius: 5px;
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 .user_card1 > form > button, .user_card2 > form > button {
   width: 5rem;
@@ -363,6 +371,10 @@ h4 {
   margin: 1rem 0.5rem 0 0.5rem;
   padding: 0.5rem;
   background-color: #dbdbdb;
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .footer {
