@@ -78,9 +78,10 @@ With the different tasks for each list:
 + Ljusslinga på balkongen
 + Krans på dörren
 
-# Superuser
-username: admin
-pw: admin
+# Superuser  
+username: admin  
+pw: admin  
+  
 ----------------------------------
 # Retro
 In my figma design I had a logging out page, I skipped that because I felt it was needed.  

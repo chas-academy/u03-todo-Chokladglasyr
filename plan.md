@@ -13,7 +13,7 @@ Vecka 52:
 Lov.  
 Vecka 1-2:  
 - [x] Finjustera och förbättra applikationen.
-- [ ] Skapa en 2-3 minuter lång video där ni förklarar och demonstrerar CRUD-delarna.
+- [x] Skapa en 2-3 minuter lång video där ni förklarar och demonstrerar CRUD-delarna.
 - [ ] Sista dagen i vecka 2 lämnar ni in uppgiften.
 
 ### MVP (Minimal Viable Product)

@@ -25,6 +25,7 @@ $lists = getAllListsfromAllUsers();
             if ($_GET['show'] == 'users') {
                 foreach ($users as $user) {
                     if ($user['username'] != 'admin') {
+                        // IF user isn't the superuser account show every user in db
                         if ($user['userID'] != $_SESSION['user']['userID']) { ?>
                             <!-- for styling purposes -->
                             <span class="<?php

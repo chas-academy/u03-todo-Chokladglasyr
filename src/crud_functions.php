@@ -9,6 +9,9 @@ function sanitizeInput($input)
 
     return $input;
 }
+
+// Functions for LISTS
+
 //Hämtar alla listor (per user i framtiden)
 function getListAll($userID)
 {
@@ -24,7 +27,6 @@ function getListOne($listID)
 
     return $stmt->fetch();
 }
-
 //Lägg till ny lista
 function addList($listData)
 {
@@ -36,7 +38,6 @@ function addList($listData)
 
     $stmt->execute();
 }
-// FUNKTIONER FÖR ATT LÄGGA TILL EN NY LISTA
 
 // Hämta en lista som heter något specifik för att se om listan redan finns
 function checkListTitleFromUser($userID)
@@ -156,6 +157,8 @@ function addPredefinedList($userID)
             break;
     }
 }
+
+
 //ändra list titel och descript
 function editList($listData)
 {
@@ -167,7 +170,9 @@ function editList($listData)
 
     $stmt->execute();
 }
-//
+
+
+
 function deleteList($listID)
 {
     global $conn;
@@ -186,6 +191,10 @@ if (isset($_POST['crud']) && $_POST['crud'] == "addList") {
 } elseif (isset($_POST['crud']) && $_POST['crud'] == "deleteList") {
     deleteList($_POST['id']);
 }
+
+
+// Functions for TASKS
+
 //Hämtar alla uppgifter per lista
 function getTasksPerList($listID)
 {
@@ -261,6 +270,9 @@ if (isset($_POST['is_completed'])) {
         incompletedTask($_POST['id']);
     }
 }
+
+
+
 //ADMIN FUNCTIONS
 
 // Hämtar alla users order by rollen
