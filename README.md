@@ -1,6 +1,6 @@
 # Xmas List  
 
-Here is my design in [Figma](https://www.figma.com/design/HFj4q35xjuHdruXLuH8rHB/U03?node-id=0-1&t=6om5Lk0hxoBU4ifD-1/?target="_blank")  
+Here is my design in [Figma](https://www.figma.com/design/HFj4q35xjuHdruXLuH8rHB/U03?node-id=0-1&t=6om5Lk0hxoBU4ifD-1&target="_blank")  
 
 In another page on the shared Figma you can find the ER diagrams, however, I tried 3 different types, whereas one is on another site. So here is the [third](https://drawsql.app/teams/hej-8/diagrams/ida) version.
 
