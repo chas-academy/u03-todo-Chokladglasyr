@@ -242,12 +242,25 @@ function deleteTask($taskID)
     global $conn;
     $stmt = $conn->exec("DELETE FROM tasks WHERE taskID =" . $taskID);
 }
+function editTask($taskdata)
+{
+    
+    global $conn;
+    $stmt = $conn->prepare("UPDATE tasks SET title = :title WHERE taskID = :taskID");
+    $stmt->bindParam(':title', $taskdata['title']);
+    $stmt->bindParam(':taskID', $taskdata['taskID']);
+    $stmt->execute();
+
+}
 if (isset($_POST['crud'])) {
     if ($_POST['crud'] == "deleteTask") {
         deleteTask($_POST['id']);
     } elseif ($_POST['crud'] == "addTask") {
         $title = sanitizeInput($_POST['title']);
         addTask(['listID' => $_POST['listID'], 'title' => $title]);
+    } elseif ($_POST['crud'] == "editTask") {
+        $title = sanitizeInput($_POST['title']);
+        editTask(['taskID' => $_POST['id'], 'title' => $title]);
     }
 }
 //done eller icke done task

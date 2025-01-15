@@ -58,7 +58,8 @@ require 'crud_functions.php';?>
                         foreach ($uncheckedTasks as $uncheckedTask) :?>
                             <!-- Print out all unchecked tasks avaiable -->
                             <div class="tasks">
-                                <p><?= $uncheckedTask['title']?></p>
+                                <a href="oneList.php?listID=<?= $listTitle['listID'];?>&crud=editTask&taskID=<?=$uncheckedTask['taskID']?>"><?= $uncheckedTask['title']?></a>
+
                                 <form action="" method="post">
                                     <!-- Give hidden ID to specific task -->
                                     <input type="hidden" name="id" value="<?=$uncheckedTask['taskID']?>">
@@ -70,6 +71,11 @@ require 'crud_functions.php';?>
                             </div>
                             <?php
                         endforeach;?>
+                            <?php
+                            if (isset($_GET['crud']) && $_GET['crud'] == 'editTask') {
+                                require 'editTask.php';
+                            }
+                            ?>
                     </div>
                     <!-- Print out all checked tasks -->
                     <div class="completed">
